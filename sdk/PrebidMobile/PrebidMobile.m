@@ -1,4 +1,4 @@
-/*   Copyright 2017 APPNEXUS INC
+/*   Copyright 2017 Prebid.org, Inc.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -18,8 +18,10 @@
 
 @implementation PrebidMobile
 
-+ (void)registerAdUnits:(nonnull NSArray<PBAdUnit *> *)adUnits withAccountId:(nonnull NSString *)accountId {
-    [[PBBidManager sharedInstance] registerAdUnits:adUnits withAccountId:accountId];
++ (void)registerAdUnits:(nonnull NSArray<PBAdUnit *> *)adUnits
+          withAccountId:(nonnull NSString *)accountId
+               withHost:(PBServerHost)host {
+    [[PBBidManager sharedInstance] registerAdUnits:adUnits withAccountId:accountId withHost:host];
 }
 
 + (void)setBidKeywordsOnAdObject:(nonnull id)adObject

@@ -15,16 +15,14 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark Global Methods
-NSString *PBSUserAgent(void);
-NSString *PBSDeviceModel(void);
+/**
+ * Prebid Server host selection enumerator to be passed in by the user
+ */
+typedef NS_ENUM(NSUInteger, PBServerHost) {
+    PBServerHostAppNexus = 1,
+    PBServerHostRubicon
+};
 
-BOOL PBSAdvertisingTrackingEnabled(void);
-
-NSString *PBSUDID(void);
-NSString *PBSConvertToNSString(id value);
-NSArray *PBSConvertToNSArray(id value);
-
-@interface PBServerGlobal : NSObject
+@interface PBHost : NSObject
 
 @end

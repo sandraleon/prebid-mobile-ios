@@ -1,4 +1,4 @@
-/*   Copyright 2017 APPNEXUS INC
+/*   Copyright 2017 Prebid.org, Inc.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,22 +28,28 @@
 #import "PBServerLocation.h"
 #import "PBServerReachability.h"
 #import "PBTargetingParams.h"
+#import "PBException.h"
 
 static NSString *const kAPNAdServerResponseKeyNoBid = @"nobid";
 static NSString *const kAPNAdServerResponseKeyUUID = @"uuid";
 static NSString *const kPrebidMobileVersion = @"0.1.1";
+static NSString *const kAPNPrebidServerUrl = @"https://prebid.adnxs.com/pbs/v1/auction";
+static NSString *const kRPPrebidServerUrl = @"https://prebid-server.rubiconproject.com/auction";
 
 @interface PBServerAdapter ()
 
 @property (nonatomic, strong) NSString *accountId;
+@property (nonatomic, strong) NSURL *hostUrl;
 
 @end
 
 @implementation PBServerAdapter
 
-- (nonnull instancetype)initWithAccountId:(nonnull NSString *)accountId {
+- (nonnull instancetype)initWithAccountId:(nonnull NSString *)accountId
+                                 withHost:(PBServerHost)host {
     if (self = [super init]) {
         _accountId = accountId;
+        _hostUrl = [self urlForHost:host];
     }
     return self;
 }
@@ -70,8 +76,10 @@ static NSString *const kPrebidMobileVersion = @"0.1.1";
 }
 
 - (NSURLRequest *)buildRequestForAdUnits:(NSArray<PBAdUnit *> *)adUnits {
-    NSURL *url = [NSURL URLWithString:@"https://prebid.adnxs.com/pbs/v1/auction"];
-    NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc] initWithURL:url
+    if (_hostUrl == nil) {
+        @throw [PBException exceptionWithName:PBHostInvalidException];
+    }
+    NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc] initWithURL:_hostUrl
                                                                        cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                    timeoutInterval:1000];
     [mutableRequest setHTTPMethod:@"POST"];
@@ -138,6 +146,23 @@ static NSString *const kPrebidMobileVersion = @"0.1.1";
     requestDict[@"ad_units"] = adUnitConfigs;
     
     return [requestDict copy];
+}
+
+- (NSURL *)urlForHost:(PBServerHost)host {
+    NSURL *url;
+    switch (host) {
+        case PBServerHostAppNexus:
+            url = [NSURL URLWithString:kAPNPrebidServerUrl];
+            break;
+        case PBServerHostRubicon:
+            url = [NSURL URLWithString:kRPPrebidServerUrl];
+            break;
+        default:
+            url = nil;
+            break;
+    }
+    
+    return url;
 }
 
 - (NSDictionary *)user {

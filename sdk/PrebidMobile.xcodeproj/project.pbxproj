@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40B92AF1FCCC5E300A676A8 /* PBHost.h in Headers */ = {isa = PBXBuildFile; fileRef = B40B92AD1FCCC5E300A676A8 /* PBHost.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C22E7CE61EE70E19007B31F4 /* NSTimer+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B16E501EE1BEC4006304C0 /* NSTimer+Extension.m */; };
 		C23386D21EE5DBFB002FD404 /* PrebidMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = C23386D01EE5DBFB002FD404 /* PrebidMobile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C23386D31EE5DBFB002FD404 /* PrebidMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = C23386D11EE5DBFB002FD404 /* PrebidMobile.m */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40B92AD1FCCC5E300A676A8 /* PBHost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBHost.h; sourceTree = "<group>"; };
 		C23386D01EE5DBFB002FD404 /* PrebidMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrebidMobile.h; sourceTree = "<group>"; };
 		C23386D11EE5DBFB002FD404 /* PrebidMobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrebidMobile.m; sourceTree = "<group>"; };
 		C23386D41EE5DC95002FD404 /* PBAdUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdUnit.h; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				C2B16E301EE1BEA6006304C0 /* PBKeywordsManager.m */,
 				C2B16E311EE1BEA6006304C0 /* PBTargetingParams.h */,
 				C2B16E321EE1BEA6006304C0 /* PBTargetingParams.m */,
+				B40B92AD1FCCC5E300A676A8 /* PBHost.h */,
 				C23386D01EE5DBFB002FD404 /* PrebidMobile.h */,
 				C23386D11EE5DBFB002FD404 /* PrebidMobile.m */,
 			);
@@ -361,6 +364,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B92AF1FCCC5E300A676A8 /* PBHost.h in Headers */,
 				C2B16E391EE1BEA6006304C0 /* PBException.h in Headers */,
 				C2B16E341EE1BEA6006304C0 /* PBBannerAdUnit.h in Headers */,
 				C2B16E481EE1BEB6006304C0 /* PBBidResponse.h in Headers */,

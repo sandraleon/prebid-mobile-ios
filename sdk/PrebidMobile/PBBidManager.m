@@ -1,4 +1,4 @@
-/*   Copyright 2017 APPNEXUS INC
+/*   Copyright 2017 Prebid.org, Inc.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -81,12 +81,14 @@ static dispatch_once_t onceToken;
     sharedInstance = nil;
 }
 
-- (void)registerAdUnits:(nonnull NSArray<PBAdUnit *> *)adUnits withAccountId:(nonnull NSString *)accountId {
+- (void)registerAdUnits:(nonnull NSArray<PBAdUnit *> *)adUnits
+          withAccountId:(nonnull NSString *)accountId
+               withHost:(PBServerHost)host {
     if (_adUnits == nil) {
         _adUnits = [[NSMutableSet alloc] init];
     }
     _bidsMap = [[NSMutableDictionary alloc] init];
-    _demandAdapter = [[PBServerAdapter alloc] initWithAccountId:accountId];
+    _demandAdapter = [[PBServerAdapter alloc] initWithAccountId:accountId withHost:host];
     for (id adUnit in adUnits) {
         [self registerAdUnit:adUnit];
     }
